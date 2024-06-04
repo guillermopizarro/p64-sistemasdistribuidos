@@ -31,12 +31,24 @@ public class Cliente {
             OutputStreamWriter out_writer = new OutputStreamWriter(socket.getOutputStream());
             PrintWriter out_socket = new PrintWriter(out_writer, true);
 
-            String input = "";
+            BufferedReader teclado = new BufferedReader( new InputStreamReader( System.in ) );
+            String consola = "", input = "";
 
             while (true) {
+                while ((consola = teclado.readLine()) != null) {
+                    if (consola != null) {
+                        System.out.println("CLiente dice: " + consola);
+                        out_socket.println(consola);
+                        break;
+                    }
+                }
 
+                while ((input = in_socket.readLine()) != null) {
+                    System.out.println("Servidor dice: " + input);
+                    break;
+                }
 
-                if (input.equals("adios")) {
+                if (input!= null && input.equals("adios")) {
                     break;
                 }
             }
@@ -58,5 +70,7 @@ public class Cliente {
         System.out.println("Ingresar puerto: ");
         int puerto = Integer.parseInt( consola.nextLine() );
         
+        Cliente cliente = new Cliente(ip, puerto);
+        cliente.conectar();
     }
 }
