@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "@grpc/grpc-js": "^1.11.1",
-    "@grpc/proto-loader": "^0.7.13"
+    "@grpc/proto-loader": "^0.7.13",
+    "server": "file:"
   }
 }
